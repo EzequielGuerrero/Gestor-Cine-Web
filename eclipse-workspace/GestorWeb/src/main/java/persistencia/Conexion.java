@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import tablas.Cines;
+
 public class Conexion {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/tucine?user=root&password=eze";
@@ -12,7 +14,7 @@ public class Conexion {
 		return DriverManager.getConnection(URL);
 	}
 
-	public  void crearCines(Connection con,String cineName, String address) throws SQLException {
+	public void crearCines(Connection con,Cines cine) throws SQLException {
 
 
 		PreparedStatement st = null;
@@ -22,8 +24,8 @@ public class Conexion {
 		try {
 			con.setAutoCommit(false);
 			st = con.prepareStatement(CONSULTA);
-			st.setString(1, cineName);
-			st.setString(2, address);
+			st.setString(1, cine.getNombreCine());
+			st.setString(2, cine.getDirrecion());
 			st.executeUpdate();
 			con.commit();
 
@@ -148,8 +150,8 @@ public class Conexion {
 				String nombre = rs.getString("nombreCine");
 				String direccion = rs.getString("direccion");
 
-				String cineData = "ID: " + indice + ", Nombre: " + nombre + ", Dirección: " + direccion;
-				listaCines.add(cineData);
+				String datosCine = "ID: " + indice + ", Nombre: " + nombre + ", Dirección: " + direccion;
+				listaCines.add(datosCine);
 			}
 		}
 

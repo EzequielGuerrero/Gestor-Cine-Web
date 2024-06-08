@@ -23,8 +23,8 @@
                     <%
                     Conexion con = new Conexion();
                     try {
-                        for (String cineData : con.leerCines(con.getConexion())) {
-                            String[] filas = cineData.split(",");
+                        for (String datosCine : con.leerCines(con.getConexion())) {
+                            String[] filas = datosCine.split(",");
                     %>
                     <tr>
                         <td><%=filas[0]%></td>
@@ -59,7 +59,10 @@
                     <button type="submit">Modificar Cine</button>
                 </form>
                 <h2>Que cine quieres eliminar</h2>
-                <form action="ServletEliminarCine" id="eliminarCine" method="post">
+                
+                /* llama al servet de crear el cine             223*/
+                
+                <form action="ServletCrearCine" id="eliminarCine" method="get">
                     <label>Id del Cine a eliminar</label>
                     <input type="number" id="pkCines" name="eliminarCineId" required>
                     <button type="submit">Eliminar Cine</button>
