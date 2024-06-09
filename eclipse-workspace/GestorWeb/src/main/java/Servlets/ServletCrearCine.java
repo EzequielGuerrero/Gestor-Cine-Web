@@ -32,22 +32,65 @@ public class ServletCrearCine extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		try {
+		// Propiedades para saber que el boton que se esta pulsando es el de crear cine:
+
+		final String BOTONCREAR = request.getParameter("botonCine");
+		final String VALOR_CREAR = "botonCrearCine";
+
+		// Ahora lo mismo pero para eliminar el cine:
+
+		final String BOTON_BORRAR = request.getParameter("botonEliminar");
+		final String VALOR_BORRAR = "eliminarCine";
+
+		// Lo mismo pero para saber que se pulsa el modificar:
+
+		final String BOTON_ACTUALIZAR = request.getParameter("actualizarCine");
+		final String VALOR_ACTUALIZAR = "actualizador";
+
+		if (VALOR_CREAR.equals(BOTONCREAR) || BOTONCREAR != null) {
 
 			String nombre = request.getParameter("nombreCine");
 			String direccion = request.getParameter("direccionCine");
 
 			Cines cineIntroducido = new Cines(nombre, direccion);
 
-			con.crearCines(con.getConexion(), cineIntroducido);
+			try {
+				con.crearCines(con.getConexion(), cineIntroducido);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
-			// Tengo que mirar que no llame a los dos metodos a la vez
+		} else if (VALOR_BORRAR.equals(BOTONCREAR) || BOTON_BORRAR != null) {
 
-			/*String indiceEliminado = request.getParameter("eliminarCineId");
-			con.eliminarCines(con.getConexion(), Integer.parseInt(indiceEliminado));*/
+			String indiceEliminado = request.getParameter("eliminarCineId");
+			
+			Cines cineEliminado = new Cines(Integer.parseInt(indiceEliminado), null);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				con.eliminarCines(con.getConexion(), cineEliminado);
+
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} else if (VALOR_ACTUALIZAR.equals(BOTON_BORRAR) || BOTON_ACTUALIZAR != null) {
+
+			String idCine = request.getParameter("cineId");
+			String nuevoNombre = request.getParameter("nuevoNombre");
+			
+			Cines cinesMod = new Cines(Integer.parseInt(idCine), nuevoNombre);
+
+			try {
+
+				con.modificarNombreCine(con.getConexion(), cinesMod);
+
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}

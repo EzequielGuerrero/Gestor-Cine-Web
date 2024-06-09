@@ -9,13 +9,12 @@ import tablas.Cines;
 public class Conexion {
 
 	private static final String URL = "jdbc:mysql://localhost:3306/tucine?user=root&password=eze";
-	
-	public Connection getConexion () throws SQLException {
+
+	public Connection getConexion() throws SQLException {
 		return DriverManager.getConnection(URL);
 	}
 
-	public void crearCines(Connection con,Cines cine) throws SQLException {
-
+	public void crearCines(Connection con, Cines cine) throws SQLException {
 
 		PreparedStatement st = null;
 
@@ -94,7 +93,7 @@ public class Conexion {
 		}
 	}
 
-	public void eliminarCines(Connection con, int indice) throws SQLException {
+	public void eliminarCines(Connection con, Cines cine) throws SQLException {
 
 		String consultaEliminada = "Delete from cines where identificador = ?";
 
@@ -102,7 +101,7 @@ public class Conexion {
 
 			con.setAutoCommit(false);
 
-			pst.setInt(1, indice);
+			pst.setInt(1, cine.getID());
 
 			pst.executeUpdate();
 			con.commit();
@@ -116,7 +115,7 @@ public class Conexion {
 		}
 	}
 
-	public void modificarNombreCine(Connection con, int identificador, String nombreCine) throws SQLException {
+	public void modificarNombreCine(Connection con, Cines cine) throws SQLException {
 
 		String consulta_Update = "UPDATE cines SET nombreCine = ? WHERE identificador = ? ";
 
@@ -124,8 +123,8 @@ public class Conexion {
 
 			con.setAutoCommit(false);
 
-			pst.setString(1, nombreCine);
-			pst.setInt(2, identificador);
+			pst.setInt(2, cine.getID());
+			pst.setString(1, cine.getNombreCine());
 
 			pst.execute();
 			con.commit();

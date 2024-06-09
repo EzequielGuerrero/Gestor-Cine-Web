@@ -41,31 +41,43 @@
                 </table>
             </div>
             <div class="gestor">
+            
                 <h1>Gestión de Cines</h1>
+                
                 <h2>Crear Cine</h2>
+                
                 <form action="ServletCrearCine" id="crearCine" method="get">
+                
                     <label for="nombreCine">Nombre del Cine:</label>
                     <input type="text" id="nombreCine" name="nombreCine" required>
+                    
                     <label for="direccionCine">Dirección del Cine:</label>
                     <input type="text" id="direccionCine" name="direccionCine" required>
-                    <button type="submit">Crear Cine</button>
+                    
+                    <button type="submit" name ="botonCine" value="botonCrearCine" >Crear Cine</button>
                 </form>
+                
                 <h2>Modificar Nombre del Cine</h2>
-                <form action="ServletActualizarCines" id="updateCinemaForm" method="get">
+                
+                <form action="ServletCrearCine" id="updateCinemaForm" method="get">
+                
                     <label for="cineId">ID del Cine:</label>
                     <input type="text" id="cineId" name="cineId" required>
+                    
                     <label for="nuevoNombreCine">Nuevo Nombre del Cine:</label>
                     <input type="text" id="nuevoNombreCine" name="nuevoNombre" required>
-                    <button type="submit">Modificar Cine</button>
+                    
+                    <button type="submit" name="actualizarCine" value="actualizador">Modificar Cine</button>
+                    
                 </form>
+                
                 <h2>Que cine quieres eliminar</h2>
-                
-                /* llama al servet de crear el cine             223*/
-                
+                                
                 <form action="ServletCrearCine" id="eliminarCine" method="get">
                     <label>Id del Cine a eliminar</label>
                     <input type="number" id="pkCines" name="eliminarCineId" required>
-                    <button type="submit">Eliminar Cine</button>
+                    
+                    <button type="submit" name="botonEliminar" value="eliminarCine" >Eliminar Cine</button>
                 </form>
             </div>
         </div>
