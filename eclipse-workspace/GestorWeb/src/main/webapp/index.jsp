@@ -1,87 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, java.sql.*, persistencia.Conexion"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="style.css">
+
 <title>Gestor Cines</title>
 </head>
+
 <body class="cuerpo">
 
-    <div class="contenedor">
-        <div class="contenido">
-            <h2>Lista de Cines</h2>
-            <div id="ListaCines" class="lista">
-                <table border="1">
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                    </tr>
-                    <%
-                    Conexion con = new Conexion();
-                    try {
-                        for (String datosCine : con.leerCines(con.getConexion())) {
-                            String[] filas = datosCine.split(",");
-                    %>
-                    <tr>
-                        <td><%=filas[0]%></td>
-                        <td><%=filas[1]%></td>
-                        <td><%=filas[2]%></td>
-                    </tr>
-                    <%
-                    }
-                    } catch (SQLException e) {
-                        out.println("<tr><td colspan='3'>Error al obtener la lista de cines</td></tr>");
-                        e.printStackTrace();
-                    }
-                    %>
-                </table>
-            </div>
-            <div class="gestor">
-            
-                <h1>Gestión de Cines</h1>
-                
-                <h2>Crear Cine</h2>
-                
-                <form action="ServletCrearCine" id="crearCine" method="get">
-                
-                    <label for="nombreCine">Nombre del Cine:</label>
-                    <input type="text" id="nombreCine" name="nombreCine" required>
-                    
-                    <label for="direccionCine">Dirección del Cine:</label>
-                    <input type="text" id="direccionCine" name="direccionCine" required>
-                    
-                    <button type="submit" name ="botonCine" value="botonCrearCine" >Crear Cine</button>
-                </form>
-                
-                <h2>Modificar Nombre del Cine</h2>
-                
-                <form action="ServletCrearCine" id="updateCinemaForm" method="get">
-                
-                    <label for="cineId">ID del Cine:</label>
-                    <input type="text" id="cineId" name="cineId" required>
-                    
-                    <label for="nuevoNombreCine">Nuevo Nombre del Cine:</label>
-                    <input type="text" id="nuevoNombreCine" name="nuevoNombre" required>
-                    
-                    <button type="submit" name="actualizarCine" value="actualizador">Modificar Cine</button>
-                    
-                </form>
-                
-                <h2>Que cine quieres eliminar</h2>
-                                
-                <form action="ServletCrearCine" id="eliminarCine" method="get">
-                    <label>Id del Cine a eliminar</label>
-                    <input type="number" id="pkCines" name="eliminarCineId" required>
-                    
-                    <button type="submit" name="botonEliminar" value="eliminarCine" >Eliminar Cine</button>
-                </form>
-            </div>
-        </div>
-    </div>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="CinesJSP.jsp">Cines</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				
+					<li class="nav-item"><a class="nav-link"
+						href="PeliculasJSP.jsp">Peliculas</a></li>
+						
+					<li class="nav-item"><a class="nav-link" href="SalasJSP.jsp">Salas</a>
+					</li>
+				</ul>
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Search"
+						aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Search</button>
+				</form>
+			</div>
+		</div>
+	</nav>
+
 </body>
 </html>
-

@@ -55,7 +55,9 @@ public class ServletCrearCine extends HttpServlet {
 			Cines cineIntroducido = new Cines(nombre, direccion);
 
 			try {
+				
 				con.crearCines(con.getConexion(), cineIntroducido);
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

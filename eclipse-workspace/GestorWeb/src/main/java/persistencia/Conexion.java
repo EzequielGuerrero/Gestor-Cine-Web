@@ -149,7 +149,8 @@ public class Conexion {
 				String nombre = rs.getString("nombreCine");
 				String direccion = rs.getString("direccion");
 
-				String datosCine = "ID: " + indice + ", Nombre: " + nombre + ", Dirección: " + direccion;
+				
+				String datosCine =  indice + "," + nombre + "," + direccion;
 				listaCines.add(datosCine);
 			}
 		}
@@ -202,8 +203,10 @@ public class Conexion {
 		}
 	}
 
-	public void leerPeliculas(Connection con) {
+	public List<String> leerPeliculas(Connection con) {
 
+		List <String> listaPeliculas = new ArrayList<String>();
+		
 		try (Statement st = con.createStatement();) {
 
 			ResultSet rs = st.executeQuery("Select * from peliculas");
@@ -218,8 +221,10 @@ public class Conexion {
 				int pegi = rs.getInt(6);
 				int precio = rs.getInt(7);
 
-				System.out.println(indice + " | " + nombre + " | " + duracion + " | " + genero + " | " + director
-						+ " | " + pegi + " | " + precio);
+				String lista = indice + "," + nombre + "," + duracion + "," + genero + "," + director + "," + pegi + "," + precio; 
+				
+				listaPeliculas.add(lista);
+				
 			}
 
 		} catch (SQLException e) {
@@ -227,6 +232,7 @@ public class Conexion {
 			System.err.println("No se a podido leer la tabla");
 			e.printStackTrace();
 		}
+		return listaPeliculas;
 
 	}
 
@@ -252,7 +258,9 @@ public class Conexion {
 		}
 	}
 
-	public void verSalas(Connection con) {
+	public List<String> leerSalas(Connection con) {
+		
+		List<String> listaSalas = new ArrayList<String>();
 
 		try {
 
@@ -266,7 +274,9 @@ public class Conexion {
 				int capacidad = rs.getInt(2);
 				int metros = rs.getInt(3);
 
-				System.out.println(indice + " | " + capacidad + " | " + metros);
+				String lista=indice + "," + capacidad + "," + metros;
+				
+				listaSalas.add(lista);
 
 			}
 		} catch (SQLException e) {
@@ -274,6 +284,7 @@ public class Conexion {
 			System.err.println("Las salas no se han podido consultar");
 			e.printStackTrace();
 		}
+		return listaSalas;
 
 	}
 
