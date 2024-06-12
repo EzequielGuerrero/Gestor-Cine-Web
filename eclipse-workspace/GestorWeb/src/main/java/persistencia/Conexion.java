@@ -1,10 +1,13 @@
 package persistencia;
 
 import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import tablas.Cines;
+import tablas.Peliculas;
+import tablas.Salas;
 
 public class Conexion {
 
@@ -24,7 +27,7 @@ public class Conexion {
 			con.setAutoCommit(false);
 			st = con.prepareStatement(CONSULTA);
 			st.setString(1, cine.getNombreCine());
-			st.setString(2, cine.getDirrecion());
+			st.setString(2, cine.getDirecion());
 			st.executeUpdate();
 			con.commit();
 
@@ -117,14 +120,15 @@ public class Conexion {
 
 	public void modificarNombreCine(Connection con, Cines cine) throws SQLException {
 
-		String consulta_Update = "UPDATE cines SET nombreCine = ? WHERE identificador = ? ";
+		String consulta_Update = "UPDATE cines SET nombreCine = ? , direccion = ? WHERE identificador = ? ";
 
 		try (PreparedStatement pst = con.prepareStatement(consulta_Update)) {
 
 			con.setAutoCommit(false);
 
-			pst.setInt(2, cine.getID());
 			pst.setString(1, cine.getNombreCine());
+			pst.setString(2, cine.getDirecion());
+			pst.setInt(3, cine.getID());
 
 			pst.execute();
 			con.commit();
@@ -149,8 +153,7 @@ public class Conexion {
 				String nombre = rs.getString("nombreCine");
 				String direccion = rs.getString("direccion");
 
-				
-				String datosCine =  indice + "," + nombre + "," + direccion;
+				String datosCine = indice + "," + nombre + "," + direccion;
 				listaCines.add(datosCine);
 			}
 		}
@@ -158,7 +161,7 @@ public class Conexion {
 		return listaCines;
 	}
 
-	public void eliminarPeliculas(Connection con, int indice) throws SQLException {
+	public void eliminarPeliculas(Connection con, Peliculas peli) throws SQLException {
 
 		String consultaEliminada = "Delete from peliculas where identificador = ?";
 
@@ -166,7 +169,7 @@ public class Conexion {
 
 			con.setAutoCommit(false);
 
-			pst.setInt(1, indice);
+			pst.setInt(1, peli.getID());
 
 			pst.executeUpdate();
 			con.commit();
@@ -205,8 +208,8 @@ public class Conexion {
 
 	public List<String> leerPeliculas(Connection con) {
 
-		List <String> listaPeliculas = new ArrayList<String>();
-		
+		List<String> listaPeliculas = new ArrayList<String>();
+
 		try (Statement st = con.createStatement();) {
 
 			ResultSet rs = st.executeQuery("Select * from peliculas");
@@ -221,10 +224,11 @@ public class Conexion {
 				int pegi = rs.getInt(6);
 				int precio = rs.getInt(7);
 
-				String lista = indice + "," + nombre + "," + duracion + "," + genero + "," + director + "," + pegi + "," + precio; 
-				
+				String lista = indice + "," + nombre + "," + duracion + "," + genero + "," + director + "," + pegi + ","
+						+ precio;
+
 				listaPeliculas.add(lista);
-				
+
 			}
 
 		} catch (SQLException e) {
@@ -236,7 +240,7 @@ public class Conexion {
 
 	}
 
-	public void eliminarSalas(Connection con, int indice) throws SQLException {
+	public void eliminarSalas(Connection con, Salas sala) throws SQLException {
 
 		String consultaEliminada = "Delete from salas where identificador = ?";
 
@@ -244,7 +248,7 @@ public class Conexion {
 
 			con.setAutoCommit(false);
 
-			pst.setInt(1, indice);
+			pst.setInt(1, sala.getIdentificador());
 
 			pst.executeUpdate();
 			con.commit();
@@ -259,7 +263,7 @@ public class Conexion {
 	}
 
 	public List<String> leerSalas(Connection con) {
-		
+
 		List<String> listaSalas = new ArrayList<String>();
 
 		try {
@@ -274,8 +278,8 @@ public class Conexion {
 				int capacidad = rs.getInt(2);
 				int metros = rs.getInt(3);
 
-				String lista=indice + "," + capacidad + "," + metros;
-				
+				String lista = indice + "," + capacidad + "," + metros;
+
 				listaSalas.add(lista);
 
 			}

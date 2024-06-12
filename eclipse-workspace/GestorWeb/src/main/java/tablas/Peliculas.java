@@ -21,6 +21,11 @@ public class Peliculas {
 		this.clasificacionEdad = clasificacionEdad;
 		this.precio = precio;
 	}
+	
+	public Peliculas (int id) {
+		
+		this.identificador=id;
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -75,7 +80,7 @@ public class Peliculas {
 				+ ", director=" + director + ", clasificacionEdad=" + clasificacionEdad + ", precio=" + precio + "]";
 	}
 
-	public int getIdentificador() {
+	public int getID() {
 		return identificador;
 	}
 

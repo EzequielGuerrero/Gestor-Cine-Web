@@ -4,20 +4,19 @@ public class Cines {
 
 	private String nombreCine;
 	private String dirrecion;
-	final private int ID;
+	private int ID;
 
-	public Cines(int ID, String nombreCine) {
+	public Cines(int ID) {
 
 		this.ID = ID;
-		this.setNombreCine(nombreCine);
 
 	}
 
-	public Cines(String nombreCine, String dirrecion) {
+	public Cines(int ID, String nombreCine, String dirrecion) {
 
-		this.ID = 0;
+		this.ID = ID;
 		this.setNombreCine(nombreCine);
-		this.setDirrecion(dirrecion);
+		this.setDirecion(dirrecion);
 
 	}
 
@@ -29,11 +28,11 @@ public class Cines {
 		this.nombreCine = nombreCine;
 	}
 
-	public String getDirrecion() {
+	public String getDirecion() {
 		return dirrecion;
 	}
 
-	public void setDirrecion(String dirrecion) {
+	public void setDirecion(String dirrecion) {
 		this.dirrecion = dirrecion;
 	}
 

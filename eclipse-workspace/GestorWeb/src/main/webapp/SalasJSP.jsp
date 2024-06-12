@@ -68,16 +68,22 @@
 					Conexion con = new Conexion();
 					try {
 						for (String datosSalas : con.leerSalas(con.getConexion())) {
-							String[] filas = datosSalas.split(",");
+							String[] columnas = datosSalas.split(",");
 					%>
 					<tr class="justify-content-center">
-						<td style="text-align: left;"><%=filas[0]%></td>
-						<td style="text-align: left;"><%=filas[1]%></td>
-						<td style="text-align: left;"><%=filas[2]%></td>
+						<td style="text-align: left;"><%=columnas[0]%></td>
+						<td style="text-align: left;"><%=columnas[1]%></td>
+						<td style="text-align: left;"><%=columnas[2]%></td>
 
 						<td>
-							<button class="btn btn-primary" type="submit">Modificar</button>
-							<button class="btn btn-primary" type="submit">Borrar</button>
+						<form method="post" action="GestorSalas"style="display: inline;">
+								<input type="hidden" name="salaId" value="<%=columnas[0]%>" />
+								<button class="btn btn-primary" type="submit">Modificar</button>
+							</form>
+							<form method="post" action="GestorSalas" style="display: inline;">
+								<input type="hidden" name="salaId" value="<%=columnas[0]%>" />
+								<button class="btn btn-danger" type="submit" name="Borrar">Borrar</button>
+							</form>
 						</td>
 
 					</tr>

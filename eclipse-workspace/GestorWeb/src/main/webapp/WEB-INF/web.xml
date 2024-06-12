@@ -1,49 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="https://jakarta.ee/xml/ns/jakartaee"
-	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-	version="6.0">
-
-	<display-name>GestorWeb</display-name>
-
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>ServletCrearCine</servlet-name>
-		<servlet-class>Servlets.ServletCrearCine</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ServletCrearCine</servlet-name>
-		<url-pattern>/ServletCrearCine</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>ServletActualizarCines</servlet-name>
-		<servlet-class>Servlets.ServletActualizarCines</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ServletActualizarCines</servlet-name>
-		<url-pattern>/ServletActualizarCines</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>ServletEliminarCine</servlet-name>
-		<servlet-class>Servlets.ServletEliminarCine</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ServletEliminarCine</servlet-name>
-		<url-pattern>/ServletEliminarCine</url-pattern>
-	</servlet-mapping>
-	
-
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" version="6.0">
+  <display-name>GestorWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <display-name>borrarCines</display-name>
+    <servlet-name>borrarCines</servlet-name>
+    <servlet-class>Servlets.borrarCines</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>borrarCines</servlet-name>
+    <url-pattern>/borrarCines</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>BorrarPeliculas</display-name>
+    <servlet-name>BorrarPeliculas</servlet-name>
+    <servlet-class>Servlets.BorrarPeliculas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BorrarPeliculas</servlet-name>
+    <url-pattern>/BorrarPeliculas</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GestorSalas</display-name>
+    <servlet-name>GestorSalas</servlet-name>
+    <servlet-class>Servlets.GestorSalas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GestorSalas</servlet-name>
+    <url-pattern>/GestorSalas</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarCines</display-name>
+    <servlet-name>ModificarCines</servlet-name>
+    <servlet-class>Servlets.ModificarCines</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarCines</servlet-name>
+    <url-pattern>/ModificarCines</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModificarPeliculas</display-name>
+    <servlet-name>ModificarPeliculas</servlet-name>
+    <servlet-class>Servlets.ModificarPeliculas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModificarPeliculas</servlet-name>
+    <url-pattern>/ModificarPeliculas</url-pattern>
+  </servlet-mapping>
 </web-app>

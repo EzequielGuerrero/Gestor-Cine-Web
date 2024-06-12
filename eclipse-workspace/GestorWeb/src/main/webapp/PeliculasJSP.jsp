@@ -65,7 +65,6 @@
 						<th style="text-align: left;">PEGI</th>
 						<th style="text-align: left;">Precio</th>
 						<th style="text-align: center;">Acciones</th>
-
 					</tr>
 					<%
 					Conexion con = new Conexion();
@@ -73,25 +72,32 @@
 					try {
 						for (String datosPelis : con.leerPeliculas(con.getConexion())) {
 
-							String[] filas = datosPelis.split(",");
+							String[] columnas = datosPelis.split(",");
 					%>
 					<tr class="justify-content-center">
 
-						<td style="text-align: left;"><%=filas[0]%></td>
-						<td style="text-align: left;"><%=filas[1]%></td>
-						<td style="text-align: left;"><%=filas[2]%></td>
-						<td style="text-align: left;"><%=filas[3]%></td>
-						<td style="text-align: left;"><%=filas[4]%></td>
-						<td style="text-align: left;"><%=filas[5]%></td>
-						<td style="text-align: left;"><%=filas[6]%></td>
+						<td style="text-align: left;"><%=columnas[0]%></td>
+						<td style="text-align: left;"><%=columnas[1]%></td>
+						<td style="text-align: left;"><%=columnas[2]%></td>
+						<td style="text-align: left;"><%=columnas[3]%></td>
+						<td style="text-align: left;"><%=columnas[4]%></td>
+						<td style="text-align: left;"><%=columnas[5]%></td>
+						<td style="text-align: left;"><%=columnas[6]%></td>
 
 						<td>
-							<button class="btn btn-primary" type="submit">Modificar</button>
-							<button class="btn btn-primary" type="submit">Borrar</button>
+							<form method="post" action="ModificarCineServlet"
+								style="display: inline;">
+								<input type="hidden" name="peliId" value="<%=columnas[0]%>" />
+								<button class="btn btn-primary" type="submit">Modificar</button>
+							</form>
+							<form method="post" action="BorrarPeliculas" style="display: inline;">
+								<input type="hidden" name="peliID" value="<%=columnas[0]%>" />
+								<button class="btn btn-danger" type="submit" name="Borrar">Borrar</button>
+							</form>
 						</td>
 					</tr>
 					<%
-						}
+					}
 					} catch (SQLException e) {
 					out.println("<tr><td colspan='3'>Error al obtener la lista de cines</td></tr>");
 					e.printStackTrace();

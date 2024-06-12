@@ -12,6 +12,11 @@ public class Salas {
 		this.setCapacidad(capacidad);
 		this.setMetrosCuadrados(metrosCuadrados);
 	}
+	
+	public Salas(int identificador) {
+		
+		this.identificador=identificador;
+	}
 
 	public int getIdentificador() {
 		return identificador;
