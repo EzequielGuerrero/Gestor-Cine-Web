@@ -9,6 +9,17 @@ public class Peliculas {
 	private String director;
 	private String clasificacionEdad;
 	private double precio;
+	
+	public Peliculas (int id) {
+		
+		this.identificador=id;
+	}
+	
+	public Peliculas (int id, String nuevoNombre) {
+		
+		identificador = id;
+		titulo=nuevoNombre;
+	}
 
 	public Peliculas(int identificador, String titulo, String duracionMinutos, String genero, String director,
 			String clasificacionEdad, double precio) {
@@ -22,10 +33,7 @@ public class Peliculas {
 		this.precio = precio;
 	}
 	
-	public Peliculas (int id) {
-		
-		this.identificador=id;
-	}
+
 
 	public String getTitulo() {
 		return titulo;

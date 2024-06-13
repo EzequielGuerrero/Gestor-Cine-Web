@@ -183,7 +183,7 @@ public class Conexion {
 		}
 	}
 
-	public void modificarNombrePeli(Connection con, int identificador, String nombrePeli) throws SQLException {
+	public void modificarNombrePeli(Connection con, Peliculas pelis) throws SQLException {
 
 		String consulta_Update = "UPDATE peliculas SET titulo = ? WHERE identificador = ? ";
 
@@ -191,8 +191,8 @@ public class Conexion {
 
 			con.setAutoCommit(false);
 
-			pst.setString(1, nombrePeli);
-			pst.setInt(2, identificador);
+			pst.setString(1, pelis.getTitulo());
+			pst.setInt(2, pelis.getID());
 
 			pst.execute();
 			con.commit();
@@ -292,17 +292,18 @@ public class Conexion {
 
 	}
 
-	public void modificarSalas(Connection con, int capacidad, int indice) throws SQLException {
+	public void modificarSalas(Connection con, Salas sala) throws SQLException {
 
-		String consulta = "UPDATE salas SET capacidad = ? WHERE identificador = ?";
+		String consulta = "UPDATE salas SET capacidad = ?, metrosCuadrados = ? WHERE identificador = ?";
 
 		try {
 			con.setAutoCommit(false);
 
 			PreparedStatement pst = con.prepareStatement(consulta);
 
-			pst.setInt(1, capacidad);
-			pst.setInt(2, indice);
+			pst.setInt(1, sala.getCapacidad());
+			pst.setDouble(2, sala.getMetrosCuadrados());
+			pst.setInt(3, sala.getIdentificador());
 
 			pst.executeUpdate();
 			con.commit();

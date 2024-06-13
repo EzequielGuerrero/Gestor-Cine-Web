@@ -67,8 +67,12 @@
 					<%
 					Conexion con = new Conexion();
 					try {
-						for (String datosSalas : con.leerSalas(con.getConexion())) {
-							String[] columnas = datosSalas.split(",");
+						List<String> salas = con.leerSalas(con.getConexion());
+						if (salas.isEmpty()) {
+							out.println("<tr><td colspan='4'>No hay salas disponibles</td></tr>");
+						} else {
+							for (String datosSalas : salas) {
+						String[] columnas = datosSalas.split(",");
 					%>
 					<tr class="justify-content-center">
 						<td style="text-align: left;"><%=columnas[0]%></td>
@@ -76,9 +80,13 @@
 						<td style="text-align: left;"><%=columnas[2]%></td>
 
 						<td>
-						<form method="post" action="GestorSalas"style="display: inline;">
-								<input type="hidden" name="salaId" value="<%=columnas[0]%>" />
-								<button class="btn btn-primary" type="submit">Modificar</button>
+							<form method="post" action="ModificarSalas"
+								style="display: inline;">
+								<input type="hidden" name="salasID" value="<%=columnas[0]%>" />
+								<button type="button" class="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#exampleModalLong-<%=columnas[0]%>">
+									Modificar</button>
 							</form>
 							<form method="post" action="GestorSalas" style="display: inline;">
 								<input type="hidden" name="salaId" value="<%=columnas[0]%>" />
@@ -87,7 +95,45 @@
 						</td>
 
 					</tr>
+
+					<div class="modal fade" id="exampleModalLong-<%=columnas[0]%>"
+						tabindex="-1" aria-labelledby="exampleModalLongTitle"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modificarSalas" id="modificarSalas">Modificar
+										Sala</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form method="post" action="ModificarSalas">
+										<div class="form-group">
+											<label for="formGroupExampleInput">Capacidad Mod</label> <input
+												type="text" class="form-control" name="capacidadNueva"
+												id="formGroupExampleInput" value="<%=columnas[1]%>">
+										</div>
+										<div class="form-group">
+											<label for="formGroupExampleInput2">Metros Cuadrados
+												Mod</label> <input type="text" class="form-control"
+												name="nuevosMetros" id="formGroupExampleInput2"
+												value="<%=columnas[2]%>">
+										</div>
+										<input type="hidden" name="salasID" value="<%=columnas[0]%>" />
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button class="btn btn-primary" type="submit">Realizar
+												cambios</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 					<%
+					}
 					}
 					} catch (SQLException e) {
 					out.println("<tr><td colspan='3'>Error al obtener la lista de cines</td></tr>");

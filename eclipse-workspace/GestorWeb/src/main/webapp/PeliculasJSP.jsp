@@ -70,9 +70,12 @@
 					Conexion con = new Conexion();
 
 					try {
-						for (String datosPelis : con.leerPeliculas(con.getConexion())) {
-
-							String[] columnas = datosPelis.split(",");
+						List<String> pelis = con.leerPeliculas(con.getConexion());
+						if (pelis.isEmpty()) {
+							out.println("<tr><td colspan='4'>No hay Peliculas disponibles</td></tr>");
+						} else {
+							for (String datosPelis : pelis) {
+						String[] columnas = datosPelis.split(",");
 					%>
 					<tr class="justify-content-center">
 
@@ -85,18 +88,56 @@
 						<td style="text-align: left;"><%=columnas[6]%></td>
 
 						<td>
-							<form method="post" action="ModificarCineServlet"
+							<form method="post" action="ModificarPeliculas"
 								style="display: inline;">
-								<input type="hidden" name="peliId" value="<%=columnas[0]%>" />
-								<button class="btn btn-primary" type="submit">Modificar</button>
+								<input type="hidden" name="pelisID" value="<%=columnas[0]%>" />
+								<button type="button" class="btn btn-primary"
+									data-bs-toggle="modal"
+									data-bs-target="#exampleModalLong-<%=columnas[0]%>">
+									Modificar</button>
 							</form>
-							<form method="post" action="BorrarPeliculas" style="display: inline;">
+							<form method="post" action="BorrarPeliculas"
+								style="display: inline;">
 								<input type="hidden" name="peliID" value="<%=columnas[0]%>" />
 								<button class="btn btn-danger" type="submit" name="Borrar">Borrar</button>
 							</form>
 						</td>
 					</tr>
+
+					<div class="modal fade" id="exampleModalLong-<%=columnas[0]%>"
+						tabindex="-1" aria-labelledby="exampleModalLongTitle"
+						aria-hidden="true">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modificarPeliculas" id="modificarPeliculas">Modificar
+										Pelicula</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+								<div class="modal-body">
+									<form method="post" action="ModificarPeliculas">
+										<div class="form-group">
+											<label for="formGroupExampleInput">Nuevo nombre
+												Pelicula</label> <input type="text" class="form-control"
+												name="nuevoNombrePeli" id="formGroupExampleInput"
+												value="<%=columnas[1]%>">
+										</div>
+
+										<input type="hidden" name="peliId" value="<%=columnas[0]%>" />
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button class="btn btn-primary" type="submit">Realizar
+												cambios</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
 					<%
+					}
 					}
 					} catch (SQLException e) {
 					out.println("<tr><td colspan='3'>Error al obtener la lista de cines</td></tr>");
