@@ -11,6 +11,16 @@ public class Cines {
 		this.ID = ID;
 
 	}
+	
+
+	
+	public Cines(String nombreCine, String dirrecion) {
+		super();
+		this.nombreCine = nombreCine;
+		this.dirrecion = dirrecion;
+	}
+
+
 
 	public Cines(int ID, String nombreCine, String dirrecion) {
 

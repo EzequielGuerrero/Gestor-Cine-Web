@@ -67,4 +67,24 @@
     <servlet-name>ModificarSalas</servlet-name>
     <url-pattern>/ModificarSalas</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insertCine</display-name>
+    <servlet-name>insertCine</servlet-name>
+    <servlet-class>Servlets.insertCine</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insertCine</servlet-name>
+    <url-pattern>/insertCine</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insertPeli</display-name>
+    <servlet-name>insertPeli</servlet-name>
+    <servlet-class>Servlets.insertPeli</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insertPeli</servlet-name>
+    <url-pattern>/insertPeli</url-pattern>
+  </servlet-mapping>
 </web-app>

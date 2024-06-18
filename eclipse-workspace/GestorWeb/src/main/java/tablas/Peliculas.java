@@ -4,10 +4,10 @@ public class Peliculas {
 
 	private final int identificador;
 	private String titulo;
-	private String duracionMinutos;
+	private int duracionMinutos;
 	private String genero;
 	private String director;
-	private String clasificacionEdad;
+	private int clasificacionEdad;
 	private double precio;
 	
 	public Peliculas (int id) {
@@ -21,8 +21,8 @@ public class Peliculas {
 		titulo=nuevoNombre;
 	}
 
-	public Peliculas(int identificador, String titulo, String duracionMinutos, String genero, String director,
-			String clasificacionEdad, double precio) {
+	public Peliculas(int identificador, String titulo, int duracionMinutos, String genero, String director,
+			int clasificacionEdad, double precio) {
 
 		this.identificador = identificador;
 		this.titulo = titulo;
@@ -43,11 +43,11 @@ public class Peliculas {
 		this.titulo = titulo;
 	}
 
-	public String getDuracionMinutos() {
+	public int getDuracionMinutos() {
 		return duracionMinutos;
 	}
 
-	public void setDuracionMinutos(String duracionMinutos) {
+	public void setDuracionMinutos(int duracionMinutos) {
 		this.duracionMinutos = duracionMinutos;
 	}
 
@@ -67,11 +67,11 @@ public class Peliculas {
 		this.director = director;
 	}
 
-	public String getClasificacionEdad() {
+	public int getClasificacionEdad() {
 		return clasificacionEdad;
 	}
 
-	public void setClasificacionEdad(String clasificacionEdad) {
+	public void setClasificacionEdad(int clasificacionEdad) {
 		this.clasificacionEdad = clasificacionEdad;
 	}
 

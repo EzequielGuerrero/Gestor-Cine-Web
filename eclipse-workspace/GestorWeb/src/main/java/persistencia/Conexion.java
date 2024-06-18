@@ -46,21 +46,20 @@ public class Conexion {
 		}
 	}
 
-	public static void crearPeliculas(Connection con, String titulo, int duracionMinutos, String genero,
-			String director, int clasificacionEdad, int precio) throws SQLException {
-
+	public  void crearPeliculas(Connection con, Peliculas peli) throws SQLException {
+		
 		String consulta = "INSERT INTO peliculas (titulo, duracionMinutos, genero,director,clasificacionEdad,precio) VALUES ( ?,?, ?,?,?, ?)";
 
 		try (PreparedStatement st = con.prepareStatement(consulta)) {
 
 			con.setAutoCommit(false);
 
-			st.setString(1, titulo);
-			st.setInt(2, duracionMinutos);
-			st.setString(3, genero);
-			st.setString(4, director);
-			st.setInt(5, clasificacionEdad);
-			st.setInt(6, precio);
+			st.setString(1, peli.getTitulo() );
+			st.setInt(2, peli.getDuracionMinutos());
+			st.setString(3, peli.getGenero());
+			st.setString(4, peli.getDirector());
+			st.setInt(5, peli.getClasificacionEdad());
+			st.setDouble(6, peli.getPrecio());
 
 			st.executeUpdate();
 			con.commit();
