@@ -87,4 +87,14 @@
     <servlet-name>insertPeli</servlet-name>
     <url-pattern>/insertPeli</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>insertSalas</display-name>
+    <servlet-name>insertSalas</servlet-name>
+    <servlet-class>Servlets.insertSalas</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>insertSalas</servlet-name>
+    <url-pattern>/insertSalas</url-pattern>
+  </servlet-mapping>
 </web-app>

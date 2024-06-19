@@ -6,16 +6,22 @@ public class Salas {
 	private int capacidad;
 	private double metrosCuadrados;
 
+	public Salas(int identificador) {
+
+		this.identificador = identificador;
+	}
+
+	public Salas(int capacidad, double metrosCuadrados) {
+		this.identificador = 0;
+		this.capacidad = capacidad;
+		this.metrosCuadrados = metrosCuadrados;
+	}
+
 	public Salas(int identificador, int capacidad, double metrosCuadrados) {
-		
+
 		this.identificador = identificador;
 		this.setCapacidad(capacidad);
 		this.setMetrosCuadrados(metrosCuadrados);
-	}
-	
-	public Salas(int identificador) {
-		
-		this.identificador=identificador;
 	}
 
 	public int getIdentificador() {

@@ -73,7 +73,7 @@ public class Conexion {
 
 	}
 
-	public static void crearSalas(Connection con, int capacidadPersonas, double superficie) throws SQLException {
+	public void crearSalas(Connection con, Salas sala) throws SQLException {
 
 		String consulta = "INSERT INTO salas (capacidad, metrosCuadrados) VALUES ( ?, ?)";
 
@@ -81,8 +81,8 @@ public class Conexion {
 
 			con.setAutoCommit(false);
 
-			st.setInt(1, capacidadPersonas);
-			st.setDouble(2, superficie);
+			st.setInt(1, sala.getCapacidad());
+			st.setDouble(2, sala.getMetrosCuadrados());
 
 			st.executeUpdate();
 			con.commit();
